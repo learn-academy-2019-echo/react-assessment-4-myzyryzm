@@ -5,13 +5,30 @@
 
 // 1. Write a React component that prints "I am a component!" Be sure to include all necessary imports, exports, etc.
 
+import React, {Component} from 'react'
 
+class Comp extends React{
+  render(){
+    console.log("I am a component!")
+    return (
+      <div>
+        <h1>I am a component!</h1>
+      </div>
+    );
+  }
+}
+
+export default Comp;
 
 
 
 // 2. Refactor this vanilla javascript loop to a map function. The output should remain the same.
 
 var names = ["Ford Prefect", "Arthur Dent", "Trillian", "Zaphod", "Vogon", "Marvin, the Paranoid Android"]
+
+names.map(name => {
+  console.log(name + " is " + name.length + " characters long.")
+})
 
 for(let i=0; i<names.length; i++){
   console.log(`${names[i]} is ${names[i].length} characters long.`)
@@ -27,12 +44,19 @@ this.state = {
   dislikes: ["mirrors", "garlic", "wooden stakes"]
 }
 
+const {name,home,dislikes} = this.state;
+
 
 
 // 4. Write a React method that would add one and update the state of the count each time the method is called.
 
 this.state = {
   count: 0
+}
+
+function updateCount() {
+  let nuCount = this.state.count + 1;
+  this.setState({count: nuCount})
 }
 
 
@@ -45,23 +69,23 @@ class Recipes{
   constructor(props){
     super(props)
     this.state = {
-      recipes:
-        {name: 'Meatballs'},
-        {name: 'Mac & Cheese'}
+      recipes:[{name: 'Meatballs'},{name: 'Mac & Cheese'}]
     }
   }
 
   render() {
-    return(
-      let recipe = recipes.map(recipe => {
+    const {recipes} = this.state;
+    let recipe = recipes.map((r,index) => {
         return(
-          <li key={recipe.name}>{recipe.name}</li>
+          <li key={index.toString()}>{r.name}</li>
         )
       })
+    return(
+      
       <ul>
         {recipe}
       </ul>
     )
   }
 }
-export default Recipes
+export default Recipes;
